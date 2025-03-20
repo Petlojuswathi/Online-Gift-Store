@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Registration | Gift Store</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .register-container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .register-header {
+            text-align: center;
+            color: #d63384;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .form-control, .form-select {
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .btn-register {
+            background: #d63384;
+            border: none;
+            color: white;
+            font-weight: bold;
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+        }
+        .btn-register:hover {
+            background: #c82373;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .login-link a {
+            color: #d63384;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="register-container">
+    <h2 class="register-header">Customer Registration</h2>
+
+    <form #regForm="ngForm" (ngSubmit)="registerSubmit(regForm.value)" novalidate>
+
+        <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" name="customerName" [ngModel] required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="emailId" [ngModel] required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" [ngModel] required minlength="6">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" name="mobile" [ngModel] required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Gender</label>
+            <select class="form-select" name="gender" [ngModel] required>
+                <option value="" selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Country</label>
+            <select class="form-select" name="country" [ngModel] required>
+                <option value="" selected>Select Country</option>
+                <option value="{{country.cca3}}" *ngFor="let country of countries">{{country.name.common}}</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Address</label>
+            <textarea class="form-control" name="address" [ngModel] required></textarea>
+        </div>
+
+        <button class="btn btn-register" [disabled]="!regForm.valid">Sign Up</button>
+
+        <div class="login-link">
+            <p>Already a user? <a routerLink="/login">Sign In</a></p>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

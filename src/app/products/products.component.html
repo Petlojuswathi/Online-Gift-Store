@@ -1,0 +1,66 @@
+<style>
+    body {
+      background-color: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      margin: auto;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.02);
+    }
+    .card img {
+      max-width: 150px;
+      border-radius: 8px;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    }
+    .btn-primary {
+      background: #ff9900;
+      border-color: #ff9900;
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+    .btn-primary:hover {
+      background: #e68a00;
+      border-color: #e68a00;
+    }
+  </style>
+  
+  <div class="container mt-3">
+    <h2 style="color: red;">Welcome {{customerName}}!</h2>
+    <h2 class="text-center">Products</h2>
+    
+    <div class="row" *ngFor="let product of products">
+      <div class="col-md-12">
+        <div class="card mb-2">
+          <div class="row no-gutters">
+            
+            <div class="col-md-3 d-flex justify-content-center align-items-center">
+              <img class="img-fluid" [src]="product.imgUrl" alt="{{ product.name }}">
+            </div>
+            
+            <div class="col-md-9">
+              <div class="card-body">
+                <h5 class="card-title">{{ product.productName }}</h5>
+                <p class="card-text" style="font-size: 14px;">{{ product.description }}</p>
+                <p><b>Price: {{ product.price | currency:'INR'}} </b></p>
+                <button class="btn btn-primary" [class.hidden]="!loginInfo" (click)="addToCart(product)">Add to Cart</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

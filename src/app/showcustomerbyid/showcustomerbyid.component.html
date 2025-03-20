@@ -1,0 +1,45 @@
+<h1 align="center">ShowCustomerById</h1>
+<h3 style="color: red;">Welcome {{emailId}}!</h3>
+
+<div>
+    <table align="center">
+        <tr>
+            <td>Enter CustomerId</td>
+            <td><input type="text" name="customerId" [(ngModel)]="customerId" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <button class="btn btn-primary" (click)="getCustomer()">Get Customer</button>
+
+        </tr>
+    </table>
+</div><br/>
+
+<div *ngIf="customer">
+    <table align="center" border="2" style="border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>CustomerId</th>
+                <th>CustomerName</th>
+                <th>Gender</th>
+                <th>Mobile</th>
+                <th>EmailId</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> {{ customer.customerId }} </td>
+                <td> {{ customer.customerName }} </td>
+                <td> {{ customer.gender }} </td>
+                <td> {{ customer.mobile }} </td>
+                <td> {{ customer.emailId }} </td>
+                <td> {{ customer.address }} </td>
+            </tr>
+        </tbody>
+    </table>
+</div><br/>
+
+<div>
+    <h1 align="center" style="color: red;">{{msg}}</h1>
+</div>

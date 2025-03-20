@@ -1,0 +1,41 @@
+<head>
+    <link rel="stylesheet" 
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<h4 style="color: red;">Hi {{ emailId }}!</h4>
+
+<div class="container" *ngIf="myorders?.length > 0; else noOrders">
+    <h1 align="center" style="color: red;">My Orders</h1> <br/>
+
+    <table class="table container table-bordered table-hover text-center table-sm">
+        <thead>            
+            <tr class="table-info">
+                <th>Order ID</th>
+                <th>Product</th>
+                <th>Order Date</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+            
+        <tbody>
+            <tr *ngFor="let order of myorders">
+                <td>{{ order.orderId }}</td>
+                
+                <td>
+                    <img src={{order.product.imgUrl}} height="100px" width="100px"/> <br/>
+                    {{ order.product.productName }}
+                </td>
+
+                <td>{{ order.orderDate }}</td>  
+                <td>{{ order.totalAmount | currency:'INR'}}<td>
+            </tr> 
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <ng-template #noOrders>
+        <h3 align="center" style="color: red;">No Orders Yet</h3>
+    </ng-template>
+</div>

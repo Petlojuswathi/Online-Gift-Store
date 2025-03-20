@@ -1,0 +1,48 @@
+<head>
+    <link rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" 
+    integrity="sha512-KulI0psuJQK8UMpOeiMLDXJtGOZEBm8RZNTyBBHIWqoXoPMFcw+L5AEo0YMpsW8BfiuWrdD1rH6GWGgQBF59Lg=="/>
+</head>
+
+<h2 style="color: red;">Welcome {{customerName}}!</h2>
+
+<div class="container" *ngIf="cartItems.length > 0; else noCartItems">
+    
+    <h3 align="center" style="color: red;">Cart Items</h3> <br/>
+
+    <table class="table container table-bordered table-hover text-center">
+        <thead>            
+            <tr class="table-info">
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Remove Item</th>
+            </tr>
+        </thead>
+            
+        <tbody>
+            <tr *ngFor="let product of cartItems">
+                <td> {{ product.productId      }} </td>
+                <td> {{ product.productName    }} </td>
+                <td> {{ product.price       | currency:'INR'}} </td>
+                <td> <button (click)="removeCartItem(product)"><i style="color:red;" class="fa fa-trash"> Delete</i></button> </td>
+            </tr>
+
+            <tr>
+                <td colspan="3" align="right"><b>Total:</b></td>
+                <td><b>{{total | currency:'INR'}}</b></td>
+            </tr>
+            <tr>
+                <td colspan="4" align="right">
+                    <button style="margin-right: 30px;" (click)="purchase()" class="btn btn-primary">Puchase</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <ng-template #noCartItems>
+        <h3 align="center" style="color: red;">No Cart Items</h3>
+    </ng-template>
+</div>
